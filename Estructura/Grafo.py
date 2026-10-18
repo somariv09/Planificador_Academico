@@ -8,8 +8,6 @@ class Grafo:
         self.prerrequisitos={}
 
     def AgregarMateria(self, materia:Materia):
-        if not isinstance(materia, Materia):
-            raise TypeError("Ingrese una materia")
         #Comprobamos que el codigo de la meteria no se repita
         if materia.codigo in self.materias:
             return False, f"Ya existe una materia con el codigo: {materia.codigo}"
@@ -17,10 +15,13 @@ class Grafo:
         #Los diccionarios usan pares de clave-valor por tanto en el diccionario la clave es el codigo
         #Y con esa podemos acceder al valor que es el nombre de la materia.
         self.materias[materia.codigo]=materia
+        #Por el momento se genera una materia sin ningun prerrequisito
         self.prerrequisitos[materia.codigo]=[]
         return True, f"Materia {materia.codigo} agregada correctamente"
 
     def AgregarPrerrequisito(self, codPrerrequisito, codMateria):
+        #Para agregar el prerrequisito el usuario debe ingresar el codigo de la materia prerrequisito
+        #Y el codigo de la materia que se desbloqueara por ende se quitan los espacio y se covierte a mayuscula para que todo coincida.
         prerrequisito=codPrerrequisito.strip().upper()
         materiaSiguiente=codMateria.strip().upper()
 
@@ -39,10 +40,17 @@ class Grafo:
 
     def listarMaterias(self):
         listaMaterias=[]
+        #Se recorre y ordena el diccionario esto se hace por la clave, por ende se ordenan las claves.
         codOrdenados= sorted(self.materias)
 
-        for codigo in codOrdenados:
-            materia=self.materias[codigo]
+        for x in codOrdenados:
+            #Se busca el valor asociado a la clave y se asigna a materia
+            materia=self.materias[x]
+            #Se añade a la lista
             listaMaterias.append(materia)
 
         return listaMaterias
+
+    def obtenerCodigos(self):
+        #.keys() nos permite obtener solo la clave del diccionario que en este caso coincide con el codigo de la materia
+        return list(self.materias.keys())
