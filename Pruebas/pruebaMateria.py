@@ -14,7 +14,7 @@ except ValueError as error:
 else:
     print("Error: se acepto codigo vacio")
 
-#Prueba de rechazar cnombre vacio.
+#Prueba de rechazar nombre vacio.
 print("\nPRUEBA 3: Excepción de Nombre Vacio")
 try:    
     materia=Materia("PNR1", "")
@@ -27,3 +27,6 @@ else:
 print("\nPRUEBA 4: Mostrar codigo y nombre con la función")
 materia= Materia("PED", "Programación con Estructuras de Datos")
 print(materia.__str__())
+
+
+
