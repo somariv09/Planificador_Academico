@@ -1,4 +1,4 @@
-from Materia import Materia
+from .Materia import Materia
 
 class Grafo:
     def __init__(self):
@@ -10,14 +10,14 @@ class Grafo:
     def AgregarMateria(self, materia:Materia):
         #Comprobamos que el codigo de la meteria no se repita
         if materia.codigo in self.materias:
-            return False, f"Ya existe una materia con el codigo: {materia.codigo}"
+            raise ValueError(f"Ya existe una materia con el codigo: {materia.codigo}")
 
         #Los diccionarios usan pares de clave-valor por tanto en el diccionario la clave es el codigo
         #Y con esa podemos acceder al valor que es el nombre de la materia.
         self.materias[materia.codigo]=materia
         #Por el momento se genera una materia sin ningun prerrequisito
         self.prerrequisitos[materia.codigo]=[]
-        return True, f"Materia {materia.codigo} agregada correctamente"
+        return f"Materia {materia.codigo} agregada correctamente"
 
     def AgregarPrerrequisito(self, codPrerrequisito, codMateria):
         #Para agregar el prerrequisito el usuario debe ingresar el codigo de la materia prerrequisito
@@ -26,17 +26,17 @@ class Grafo:
         materiaSiguiente=codMateria.strip().upper()
 
         if prerrequisito not in self.materias or materiaSiguiente not in self.materias:
-            return False, f"Se debe registrar primero las materias."
+            raise ValueError(f"Se debe registrar primero las materias.")
 
         if prerrequisito==materiaSiguiente:
-            return False, f"La materia no puede ser prerrequisito de si misma."
+            raise ValueError(f"La materia no puede ser prerrequisito de si misma.")
 
         if materiaSiguiente in self.prerrequisitos[prerrequisito]:
-            return False, f"Esta relación de prerrequisito ya fue ingresada."
+            raise ValueError(f"Esta relación de prerrequisito ya fue ingresada.")
 
         #Se crea la arista que va de prerrequisito hacia la materia dependiente.
         self.prerrequisitos[prerrequisito].append(materiaSiguiente)
-        return True, f"{prerrequisito} es prerrequisito de {materiaSiguiente}"
+        return f"{prerrequisito} es prerrequisito de {materiaSiguiente}"
 
     def listarMaterias(self):
         listaMaterias=[]
