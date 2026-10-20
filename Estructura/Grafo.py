@@ -1,4 +1,4 @@
-from Materia import Materia
+from .Materia import Materia
 
 class Grafo:
     def __init__(self):
