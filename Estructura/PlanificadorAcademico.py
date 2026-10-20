@@ -1,5 +1,5 @@
 from collections import deque
-from Grafo import Grafo
+from .Grafo import Grafo
 
 class PlanificadorAcademico:
     def __init__(self, grafo:Grafo):
@@ -24,7 +24,7 @@ class PlanificadorAcademico:
         #Si el codigo es de grado cero se añade a la lista
         for x in codigos:
             if(gradoEntrada[x]==0):
-                codigosGradoCero.append[x]
+                codigosGradoCero.append(x)
 
         codOrdenados=sorted(codigosGradoCero)
         #Se asigna la lista con codigos grado cero a una cola para empezar a procesar
@@ -45,14 +45,14 @@ class PlanificadorAcademico:
                 nivelActual.append(codigo)
                 procesado+=1    
 
-                #Se recorren los prerrequisitos pertenecientes al codigo
-                for prerrequisito in self.grafo.prerrequisitos[codigo]:
+                #Se recorren las materias que dependen de la materia actual.
+                for siguiente in self.grafo.prerrequisitos[codigo]:
                     #Se les reduce un grado
-                    gradoEntrada[prerrequisito]-=1
+                    gradoEntrada[siguiente]-=1
 
                     #Cuando el grado sea igual a cero se añade a la cola
-                    if gradoEntrada[prerrequisito]==0:
-                        cola.append(prerrequisito)
+                    if gradoEntrada[siguiente]==0:
+                        cola.append(siguiente)
             nivelActual.sort()
             #Se guarda nivelActual en niveles, la cual es una lista de listas.
             niveles.append(nivelActual)
