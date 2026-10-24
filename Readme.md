@@ -34,3 +34,8 @@ El sistema contempla validaciones relacionadas con el registro de materias y sus
 ### Alcance actual
 
 El proyecto se enfoca en generar un plan académico a partir de las materias registradas y sus prerrequisitos. Las funcionalidades disponibles dependen de la implementación actual del código fuente.
+
+<img width="830" height="508" alt="imagen" src="https://github.com/user-attachments/assets/020aa6be-c68a-4cc0-9840-ba51c6da823c" />
+<img width="885" height="509" alt="imagen" src="https://github.com/user-attachments/assets/1891bf28-ad53-45fa-a812-560498c8a3b4" />
+<img width="862" height="266" alt="imagen" src="https://github.com/user-attachments/assets/d05482fb-5283-457c-a825-0f245c3dcf27" />
+
