@@ -1,5 +1,5 @@
 class Materia:
-    def __init__(self, codigo, nombre):
+    def __init__(self, codigo, nombre, uv):
         #Codigo en mayusculas y se eliminan los espacios
         codigo=codigo.strip().upper()
         nombre=nombre.strip()
@@ -12,9 +12,16 @@ class Materia:
         if not nombre:
             raise ValueError("Ingrese el nombre de la materia")
 
+        if isinstance(uv, bool) or not isinstance(uv, int):
+            raise ValueError("Las unidades valorativas deben ser un número entero")
+        if uv <= 0:
+            raise ValueError("Las unidades valorativas deben ser mayores que cero")
+
+
         #Ya revisando que los valores sean correctos y existentes los asignamos.
         self.codigo=codigo
         self.nombre=nombre
+        self.uv = uv
 
     def __str__(self):
-        return f"{self.codigo}\n {self.nombre}"
+        return f"{self.codigo}\n {self.nombre} ({self.uv} UV)"
